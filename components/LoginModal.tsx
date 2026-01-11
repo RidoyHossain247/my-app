@@ -1,21 +1,21 @@
 "use client";
 
-import { useAuthStore } from "@/app/src/store/useAuthStore";
+import { useAuthStore } from "@/app/store/useAuthStore";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/password-input";
 import { authAPI } from "@/lib/api/auth-api";
 import {
-  loginSchema,
-  type LoginFormData,
+    loginSchema,
+    type LoginFormData,
 } from "@/lib/validations/auth-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";

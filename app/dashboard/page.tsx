@@ -1,8 +1,6 @@
 "use client"
 
-import { useAuthStore } from "@/app/src/store/useAuthStore"
-import { Button } from "@/components/ui/button"
-import { ContainerBox } from "@/components/ui/container-box"
+import { useAuthStore } from "@/app/store/useAuthStore"
 import {
   Card,
   CardContent,
@@ -10,97 +8,108 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useRouter } from "next/navigation"
-import ProtectedRoute from "@/components/ProtectedRoute"
 
 export default function DashboardPage() {
-  const { user, logout } = useAuthStore()
-  const router = useRouter()
-
-  const handleLogout = () => {
-    logout()
-    router.push("/login")
-  }
+  const { user } = useAuthStore()
 
   return (
-    <ProtectedRoute>
-      <ContainerBox maxWidth="2xl" className="py-16">
-        <div className="space-y-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
-              <p className="text-muted-foreground">
-                Welcome back, {user?.name || "User"}!
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground">
+          Welcome back, {user?.name || "User"}!
+        </p>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">
+              Active users
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">$0</div>
+            <p className="text-xs text-muted-foreground">
+              This month
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Orders</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">
+              Pending orders
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">
+              Online users
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+            <CardDescription>
+              Your account information
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Name</span>
+                <span className="text-sm text-muted-foreground">{user?.name}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Email</span>
+                <span className="text-sm text-muted-foreground">{user?.email}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">User ID</span>
+                <span className="text-sm text-muted-foreground">{user?.id}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Quick Actions</CardTitle>
+            <CardDescription>
+              Common tasks
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                Use the sidebar menu to navigate to different sections.
               </p>
             </div>
-            <Button onClick={handleLogout} variant="outline">
-              Logout
-            </Button>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Profile</CardTitle>
-                <CardDescription>Your account information</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <p className="text-sm">
-                    <span className="font-medium">Name:</span> {user?.name}
-                  </p>
-                  <p className="text-sm">
-                    <span className="font-medium">Email:</span> {user?.email}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Statistics</CardTitle>
-                <CardDescription>Your activity overview</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <p className="text-2xl font-bold">0</p>
-                  <p className="text-sm text-muted-foreground">Total Tasks</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>Common tasks</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <Button variant="outline" className="w-full" size="sm">
-                    Settings
-                  </Button>
-                  <Button variant="outline" className="w-full" size="sm">
-                    Help
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Your latest actions</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground text-center py-8">
-                No recent activity
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </ContainerBox>
-    </ProtectedRoute>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   )
 }
 

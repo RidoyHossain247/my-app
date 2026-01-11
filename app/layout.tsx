@@ -1,6 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LoginModalProvider from "@/components/LoginModalProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -17,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My App - Home",
-  description: "Welcome to our website",
+  title: "Admin Panel",
+  description: "Admin Dashboard",
 };
 
 export default function RootLayout({
@@ -37,12 +34,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <LoginModalProvider />
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -1,14 +1,14 @@
 "use client";
 
-import { useAuthStore } from "@/app/src/store/useAuthStore";
+import { useAuthStore } from "@/app/store/useAuthStore";
 import PublicRoute from "@/components/PublicRoute";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { ContainerBox } from "@/components/ui/container-box";
 import { Input } from "@/components/ui/input";
@@ -16,11 +16,10 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/password-input";
 import { authAPI } from "@/lib/api/auth-api";
 import {
-  loginSchema,
-  type LoginFormData,
+    loginSchema,
+    type LoginFormData,
 } from "@/lib/validations/auth-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -96,15 +95,7 @@ export default function LoginPage() {
                   )}
                 </div>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
-                    <Link
-                      href="/reset-password"
-                      className="text-sm text-primary hover:underline"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
+                  <Label htmlFor="password">Password</Label>
                   <PasswordInput
                     id="password"
                     placeholder="Enter your password"
@@ -122,14 +113,6 @@ export default function LoginPage() {
                   {loading ? "Logging in..." : "Login"}
                 </Button>
               </form>
-              <div className="mt-4 text-center text-sm">
-                <span className="text-muted-foreground">
-                  Don&apos;t have an account?{" "}
-                </span>
-                <Link href="/register" className="text-primary hover:underline">
-                  Register
-                </Link>
-              </div>
             </CardContent>
           </Card>
         </ContainerBox>

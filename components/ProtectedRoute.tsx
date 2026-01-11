@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useAuthStore } from "@/app/src/store/useAuthStore"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useAuthStore } from "@/app/store/useAuthStore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ProtectedRoute({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const { isAuthenticated } = useAuthStore()
-  const router = useRouter()
+  const { isAuthenticated } = useAuthStore();
+  const router = useRouter();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/login")
+      router.push("/login");
     }
-  }, [isAuthenticated, router])
+  }, [isAuthenticated, router]);
 
   if (!isAuthenticated) {
     return (
@@ -25,9 +25,8 @@ export default function ProtectedRoute({
           <p className="text-muted-foreground">Redirecting to login...</p>
         </div>
       </div>
-    )
+    );
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }
-
